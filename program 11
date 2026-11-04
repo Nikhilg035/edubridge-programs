@@ -1,0 +1,48 @@
+class A {
+
+    A() {
+        System.out.println("A constructor");
+    }
+
+    A(int x) {
+        System.out.println("A constructor: " + x);
+    }
+}
+
+class B extends A {
+
+    B() {
+        System.out.println("B constructor");
+    }
+
+    B(int x) {
+        super(x + 10);
+        System.out.println("B constructor: " + x);
+    }
+}
+
+class C extends B {
+
+    C() {
+        System.out.println("C constructor");
+    }
+
+    C(int x) {
+        super(x + 20);
+        System.out.println("C constructor: " + x);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println("Normal Constructor:");
+
+        C obj1 = new C();
+
+        System.out.println("\nParameterized Constructor:");
+
+        C obj2 = new C(10);
+    }
+}
