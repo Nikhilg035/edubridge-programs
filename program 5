@@ -1,0 +1,54 @@
+class BankAccount {
+
+    private int accountNumber;
+    private double balance;
+
+    static int count = 0;
+
+    final int accountId;
+    
+    BankAccount(int accountNumber, double balance, int accountId) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.accountId = accountId;
+        count++;
+    }
+    
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposit successful");
+        } else {
+            System.out.println("Invalid deposit amount");
+        }
+    }
+    
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount");
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawal successful");
+        }
+    }
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        BankAccount b1 = new BankAccount(101, 5000, 1);
+
+        b1.deposit(2000);
+        b1.withdraw(1000);
+
+        System.out.println("Account Number: 101");
+        System.out.println("Account ID: " + b1.accountId);
+        System.out.println("Balance: " + b1.getBalance());
+
+        System.out.println("Total Accounts: " + BankAccount.count);
+    }
