@@ -1,0 +1,64 @@
+class Employee {
+    int id;
+    String name;
+    double basicSalary;
+
+    Employee(int id, String name, double basicSalary) {
+        this.id = id;
+        this.name = name;
+        this.basicSalary = basicSalary;
+    }
+
+    double calculateSalary() {
+        return basicSalary;
+    }
+
+    void display() {
+        System.out.println("Employee ID: " + id);
+        System.out.println("Name: " + name);
+    }
+}
+
+class PermanentEmployee extends Employee {
+
+    PermanentEmployee(int id, String name, double salary) {
+        super(id, name, salary);
+    }
+
+    @Override
+    double calculateSalary() {
+        return basicSalary + 5000 + 3000;
+    }
+}
+class ContractEmployee extends Employee {
+    int hours;
+    double hourlyRate;
+
+    ContractEmployee(int id, String name, double salary,
+                     int hours, double hourlyRate) {
+        super(id, name, salary);
+        this.hours = hours;
+        this.hourlyRate = hourlyRate;
+    }
+
+    @Override
+    double calculateSalary() {
+        return hours * hourlyRate;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Employee[] employees = {
+                new PermanentEmployee(101, "Rahul", 30000),
+                new ContractEmployee(102, "Arun", 0, 160, 200)
+        };
+
+        for (Employee e : employees) {
+            e.display();
+            System.out.println("Salary: " + e.calculateSalary());
+            System.out.println("-------------------");
+        }
+    }
+}
