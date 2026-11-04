@@ -1,0 +1,95 @@
+class Student {
+
+    private String usn, name;
+    private int m1, m2, m3;
+
+    static int count = 0;
+    final int MAX_MARKS = 100;
+
+    Student(String usn, String name, int m1, int m2, int m3) {
+        this.usn = usn;
+        this.name = name;
+
+        if (valid(m1) && valid(m2) && valid(m3)) {
+            this.m1 = m1;
+            this.m2 = m2;
+            this.m3 = m3;
+        } else {
+            throw new IllegalArgumentException("Invalid marks!");
+        }
+
+        count++;
+    }
+
+    boolean valid(int marks) {
+        return marks >= 0 && marks <= MAX_MARKS;
+    }
+
+    String getUsn() {
+        return usn;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    int getM1() {
+        return m1;
+    }
+
+    int getM2() {
+        return m2;
+    }
+
+    int getM3() {
+        return m3;
+    }
+
+    int total() {
+        return m1 + m2 + m3;
+    }
+
+    double average() {
+        return total() / 3.0;
+    }
+
+    void display() {
+        System.out.println("USN: " + usn);
+        System.out.println("Name: " + name);
+    }
+
+    void display(ResultSummary r) {
+        System.out.println("Total: " + r.total);
+        System.out.println("Average: " + r.average);
+    }
+
+    ResultSummary getResultSummary() {
+        return new ResultSummary(total(), average());
+    }
+}
+
+class ResultSummary {
+    int total;
+    double average;
+
+    ResultSummary(int total, double average) {
+        this.total = total;
+        this.average = average;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Student s1 = new Student("1CA25CS001",
+                "Rahul", 85, 90, 80);
+
+        s1.display();
+
+        ResultSummary r = s1.getResultSummary();
+
+        s1.display(r);
+
+        System.out.println("Number of students: " + Student.count);
+    }
+}
