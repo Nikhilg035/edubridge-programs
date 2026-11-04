@@ -1,0 +1,70 @@
+class Person {
+    String name;
+    int age;
+
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+        System.out.println("Person constructor");
+    }
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+class Employee extends Person {
+    int empId;
+    double basicSalary;
+
+    Employee(String name, int age, int empId, double basicSalary) {
+        super(name, age);
+        this.empId = empId;
+        this.basicSalary = basicSalary;
+        System.out.println("Employee constructor");
+    }
+
+    void display() {
+        super.display();
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Basic Salary: " + basicSalary);
+    }
+}
+
+class Manager extends Employee {
+    String department;
+    double bonus;
+    
+    Manager(String name, int age, int empId,
+            double basicSalary, String department, double bonus) {
+
+        super(name, age, empId, basicSalary);
+        this.department = department;
+        this.bonus = bonus;
+        System.out.println("Manager constructor");
+    }
+
+    double calculateSalary() {
+        return basicSalary + bonus;
+    }
+
+    void display() {
+        super.display();
+        System.out.println("Department: " + department);
+        System.out.println("Bonus: " + bonus);
+        System.out.println("Total Salary: " + calculateSalary());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Manager m = new Manager(
+                "Rahul", 30, 101, 40000, "IT", 10000
+        );
+
+        System.out.println("\nManager Details:");
+        m.display();
+    }
+}
