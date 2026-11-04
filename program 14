@@ -1,0 +1,127 @@
+class Person {
+
+    private String name;
+    private int age;
+
+    static int count = 0;
+
+    final String COLLEGE = "Cambridge Institute of Technology";
+
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+        count++;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("College: " + COLLEGE);
+    }
+
+    void displayDetails(String message) {
+        System.out.println(message + ": " + name);
+    }
+
+    static class Department {
+        String deptName;
+
+        Department(String deptName) {
+            this.deptName = deptName;
+        }
+
+        void displayDepartment() {
+            System.out.println("Department: " + deptName);
+        }
+    }
+}
+
+class Student extends Person {
+
+    private int rollNo;
+    private String course;
+
+    Student(String name, int age, int rollNo, String course) {
+        super(name, age);
+        this.rollNo = rollNo;
+        this.course = course;
+    }
+
+    @Override
+    void displayDetails() {
+        super.displayDetails();
+        System.out.println("Roll Number: " + rollNo);
+        System.out.println("Course: " + course);
+    }
+}
+
+class Faculty extends Person {
+
+    private String subject;
+    private double salary;
+
+    Faculty(String name, int age, String subject, double salary) {
+        super(name, age);
+        this.subject = subject;
+        this.salary = salary;
+    }
+
+    @Override
+    void displayDetails() {
+        super.displayDetails();
+        System.out.println("Subject: " + subject);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+class Administrator extends Person {
+
+    private String role;
+
+    Administrator(String name, int age, String role) {
+        super(name, age);
+        this.role = role;
+    }
+
+    @Override
+    void displayDetails() {
+        super.displayDetails();
+        System.out.println("Role: " + role);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Person[] people = {
+                new Student("Rahul", 20, 101, "Data Science"),
+                new Faculty("Arun", 35, "Java", 40000),
+                new Administrator("Ravi", 40, "Manager")
+        };
+
+        for (Person p : people) {
+            System.out.println("\n----------------------");
+            p.displayDetails();
+        }
+
+        System.out.println("\nOverloaded Method:");
+        people[0].displayDetails("Student Details");
+
+        Person.Department d =
+                new Person.Department("Computer Science");
+
+        System.out.println("\nDepartment Details:");
+        d.displayDepartment();
+        
+        System.out.println("\nTotal People: " + Person.count);
+    }
+}
