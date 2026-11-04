@@ -1,0 +1,35 @@
+class Student {
+    int marks;
+
+    Student(int marks) {
+        this.marks = marks;
+    }
+}
+
+public class Main {
+
+    static void change(int x, Student s) {
+        x = 100;
+        s.marks = 95;
+        s = new Student(50);
+    }
+
+    public static void main(String[] args) {
+
+        int n = 20;
+        Student st = new Student(60);
+
+        change(n, st);
+
+        System.out.println(n);
+        System.out.println(st.marks);
+    }
+}
+1.Why does n retain its original value?
+Because Java passes primitive values by value. Changing x does not change the original variable n.
+2. Why does st.marks change?
+Because s refers to the same Student object initially. Changing s.marks = 95 changes the object's marks.
+3. Why does assigning new Student(50) to s not change st?
+Because s is a copy of the reference. Assigning a new object to s does not change the original reference st.
+4. Is Java pass-by-value or pass-by-reference?
+Java always uses Pass-by-Value. Even object references are passed by value.
